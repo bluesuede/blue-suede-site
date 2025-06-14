@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blue Suede</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .page {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 20px 40px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .main-header .nav-logo {
+      font-family: 'Lora', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #0699b3;
+      text-transform: uppercase;
+    }
+
+    .main-header nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .main-header button {
+      background: none;
+      border: none;
+      color: #0699b3;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .main-header button:hover {
+      color: #000;
+    }
+
+    .logo {
+      font-family: 'Lora', serif;
+      font-size: 90px;
+      font-weight: 700;
+      text-align: center;
+      color: #ffffff;
+      -webkit-text-stroke: 2.5px #0699b3;
+      text-stroke: 2.5px #0699b3;
+      margin-top: 40px;
+    }
+
+    .header, .main-content, .investor-section, .contact-page {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .header h1, .contact-page h1 {
+      color: #0699b3;
+      text-transform: uppercase;
+    }
+
+    .cta-button, .back-button {
+      background: none;
+      border: 2px solid #0699b3;
+      color: #0699b3;
+      padding: 15px 30px;
+      font-size: 18px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover, .back-button:hover {
+      background: #0699b3;
+      color: white;
+      box-shadow: 0 0 10px #0699b3;
+    }
+
+    .footer {
+      background: #0699b3;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .footer a:hover {
+      color: #ffd700;
+    }
+
+    /* CHIC FONTS FOR ARTICLES */
+    .articles-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      margin: 60px 0 20px;
+      color: #0699b3;
+      text-align: center;
+    }
+
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    .article-container h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .article-container p {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+    }
+
+    /* NEW CHIC CONTACT PAGE STYLES */
+    .contact-page {
+      font-family: 'Playfair Display', serif;
+      color: #222;
+      background: #f9f9f9;
+      max-width: 600px;
+      margin: 60px auto 80px;
+      padding: 40px 50px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(6, 153, 179, 0.15);
+      text-align: left;
+    }
+
+    .contact-page h1 {
+      font-size: 42px;
+      color: #0699b3;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 2px solid #0699b3;
+      padding-bottom: 12px;
+    }
+
+    .contact-page h3 {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      margin-top: 30px;
+      margin-bottom: 8px;
+      color: #444;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .contact-page p {
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      margin: 0;
+      color: #555;
+    }
+
+    .contact-page a {
+      color: #0699b3;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .contact-page a:hover {
+      border-color: #0699b3;
+    }
+
+    .back-button {
+      margin-top: 40px;
+      display: inline-block;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 12px 36px;
+      border-radius: 30px;
+      border: 2px solid #0699b3;
+      background: transparent;
+      color: #0699b3;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: #0699b3;
+      color: white;
+      box-shadow: 0 0 15px #0699b3;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="nav-logo">Blue Suede</div>
+    <nav>
+      <button onclick="goToLanding()">Home</button>
+      <button onclick="goToArticles()">Articles</button>
+      <button onclick="goToJoin()">Join Us</button>
+      <button onclick="goToContact()">Contact</button>
+    </nav>
+  </header>
+
+  <div id="landing" class="page active">
+    <div class="logo">BLUE SUEDE</div>
+    <div class="header">
+      <h1>WELCOME TO BLUE SUEDE</h1>
+      <p class="tagline">"BLUE SUEDE" VINYL CAFÉ BAR & BISTRO</p>
+      <p class="social-handle">@bluesuede.sv</p>
+    </div>
+    <div class="main-content">
+      <h2>EXPERIENCE MUSIC, ART, AND FLAVOR</h2>
+      <p>JOIN OUR VIBRANT COMMUNITY IN THE HEART OF EL SALVADOR.</p>
+      <button class="cta-button" onclick="goToContact()">CONTACT US</button>
+    </div>
+    <div class="investor-section">
+      <h2>Invest in the Future of Culture, Art, and Hospitality</h2>
+      <p><strong>Vinyl Bistro Café & Cultural Hub</strong> is more than just a space; it's a movement...</p>
+    </div>
+    <footer class="footer">
+      <p>© 2025 Blue Suede Vinyl Bistro Café & Cultural Hub | El Salvador</p>
+      <p>Follow us: <a href="https://instagram.com/bluesuede.sv" target="_blank" rel="noopener noreferrer">@bluesuede.sv</a> | Contact: <a href="mailto:bluesuede.sv@gmail.com">bluesuede.sv@gmail.com</a></p>
+    </footer>
+  </div>
+
+  <div id="articles" class="page">
+    <h1 class="articles-header">Our Concept</h1>
+    <div class="article-container">
+      <h2>Blue Suede: A Concept in the Making</h2>
+      <p>Blue Suede is a developing concept inspired by a simple idea: to create a space where quality coffee, fresh natural juices, simple food, and timeless vinyl culture come together.</p>
+      <p>By day, Blue Suede will serve carefully brewed coffee, antioxidant-rich juices, and a selection of light, seasonal dishes. Guests can enjoy a relaxed environment with curated vinyl records setting the tone — creating a calm, inviting atmosphere for conversation, work, or simply taking a break.</p>
+      <p>In the evenings, Blue Suede will offer a rotating wine list paired with small plates, providing a cozy setting for social gatherings. The music will continue to play — classic records, hand-selected for the perfect evening vibe.</p>
+      <p>Additionally, the brand is exploring pop-up experiences at local beaches and cultural spaces, blending the Blue Suede lifestyle with El Salvador’s natural beauty.</p>
+      <p>Blue Suede is not just a café or bar — it's a growing project built on simplicity, quality, and community.</p>
+    </div>
+    <button class="back-button" onclick="goToLanding()">Back</button>
+  </div>
+
+  <div id="join" class="page">
+    <h1 class="articles-header">Join Us (Coming Soon)</h1>
+    <div class="article-container">
+      <p>We’re building something beautiful. Soon you'll be able to become part of the Blue Suede community — as an artist, vendor, partner, or investor. Stay tuned!</p>
+    </div>
+    <button class="back-button" onclick="goToLanding()">Back</button>
+  </div>
+
+  <div id="contact" class="page contact-page">
+    <h1>Contact Us</h1>
+
+    <h3>Email</h3>
+    <p><a href="mailto:bluesuede.sv@gmail.com">bluesuede.sv@gmail.com</a></p>
+
+    <h3>Phone</h3>
+    <p>+503 7823 8661</p>
+
+    <h3>Social Media</h3>
+    <p><a href="https://instagram.com/bluesuede.sv" target="_blank" rel="noopener noreferrer">@bluesuede.sv on Instagram</a></p>
+
+    <button class="back-button" onclick="goToLanding()">Back</button>
+  </div>
+
+  <script>
+    function goToLanding() {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById('landing').classList.add('active');
+    }
+
+    function goToArticles() {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById('articles').classList.add('active');
+    }
+
+    function goToJoin() {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById('join').classList.add('active');
+    }
+
+    function goToContact() {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById('contact').classList.add('active');
+    }
+  </script>
+</body>
+</html>
